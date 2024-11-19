@@ -4,19 +4,29 @@ import ply.lex as lex
 tokens = (
     'HEADER',
     'P',
-    'TEXT',
 )
 
 # Definiciones de tokens
-t_HEADER = r'<h[1-9][0-9]*>'
-t_P = r'<p>'
-t_TEXT = r'[^<>\n]+'
+def t_HEADER(t):
+    r'<h[1-9][0-9]*>'
+    return t
+
+def t_P(t):
+    r'<p>'
+    return t
+
+def t_ignore_TAG(t):
+    r'</?[a-zA-Z][^>]*>'
+    pass  # Ignorar otras etiquetas
+
+def t_ignore_TEXT(t):
+    r'[^<>\n]+'
+    pass  # Ignorar texto
 
 # Ignorar espacios, tabuladores y nuevas líneas
 t_ignore = ' \t\n'
 
 def t_error(t):
-    print(f"Caracter ilegal {t.value[0]}")
     t.lexer.skip(1)
 
 # Construir el lexer
