@@ -18,10 +18,10 @@ def main():
     
     print("\n--- Análisis Sintáctico ---\n")
     # Reiniciar el nivel del último encabezado antes del análisis sintáctico
-    from parser import last_header_level
+    global last_header_level
     last_header_level = 0
     # Análisis sintáctico
     parser.parse(content)
-
+    
 if __name__ == "__main__":
     main()
