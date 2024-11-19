@@ -6,10 +6,13 @@ last_header_level = 0
 
 # Gramática
 def p_structure(p):
-    '''structure : header paragraphs structure
-                 | header structure
-                 | header paragraphs
-                 | header
+    '''structure : element structure
+                 | element
+    '''
+
+def p_element(p):
+    '''element : header
+               | paragraph
     '''
 
 def p_header(p):
@@ -22,10 +25,8 @@ def p_header(p):
         print(f"Encabezado correcto: {p[1]}")
     last_header_level = current_level
 
-def p_paragraphs(p):
-    '''paragraphs : P paragraphs
-                  | P
-    '''
+def p_paragraph(p):
+    'paragraph : P'
     print("Párrafo encontrado")
 
 def p_error(p):
